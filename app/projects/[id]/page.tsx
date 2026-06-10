@@ -16,14 +16,35 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!project) {
     return {
-      title: "Project Not Found - Chou Monyrith",
+      title: "Project Not Found | Chou Monyrith Portfolio",
       description: "The requested project details could not be found.",
     };
   }
 
   return {
-    title: `${project.title} - Chou Monyrith`,
+    title: `${project.title} | Chou Monyrith Portfolio`,
     description: project.description,
+    openGraph: {
+      title: `${project.title} | Chou Monyrith Portfolio`,
+      description: project.description,
+      url: `https://github.com/ChouMonyrith/Portfolio/projects/${id}`,
+      siteName: "Chou Monyrith Portfolio",
+      images: [
+        {
+          url: project.image[0],
+          width: 1200,
+          height: 630,
+          alt: `${project.title} Project Preview Screenshot`
+        }
+      ],
+      type: "article"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Chou Monyrith Portfolio`,
+      description: project.description,
+      images: [project.image[0]]
+    }
   };
 }
 
