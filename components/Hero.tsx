@@ -2,7 +2,7 @@ import Image from "next/image";
 import FadeUp from "./FadeUp";
 import IllustrateImage from "./IllustrateImage";
 import Link from "next/link";
-import { SOCIALS } from "@/data/social";
+import { SOCIALS } from "@/data/Social";
 
 export default function Hero() {
   return (
@@ -37,6 +37,8 @@ export default function Hero() {
               <Link
                 key={platform.id}
                 href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group w-12 h-12 border border-black flex items-center justify-center font-bold hover:bg-black hover:text-white transition-colors duration-200 relative"
               >
                 <span className="sr-only">{platform.label}</span>

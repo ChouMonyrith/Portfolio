@@ -1,6 +1,6 @@
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
-import { experiences } from "@/data/experience";
+import { experiences } from "@/data/Experiences";
 
 function Experience() {
   return (

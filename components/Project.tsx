@@ -1,5 +1,4 @@
-import React from "react";
-import Projects from "@/data/Project";
+import Projects from "@/data/Projects/Project";
 import { ProjectCard } from "./ProjectCard";
 function Project() {
   return (
@@ -11,8 +10,8 @@ function Project() {
         Academic Projects
       </h2>
       <div className="grid md:grid-cols-3 gap-6 text-black">
-        {Projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {Projects.map((project, index) => (
+          <ProjectCard key={project.id} project={{ ...project, index }} />
         ))}
       </div>
     </section>

@@ -1,77 +1,66 @@
 import Image from "next/image";
+import Link from "next/link";
+import type Project from "@/type/Project";
 
-interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  github: string;
-  vercel: string;
-  image: string;
-  index?: number; // pass 0 for the featured (inverted) card
+interface ProjectCardProps {
+  project: Project & { index?: number };
 }
 
-export function ProjectCard({ project }: { project: Project }) {
-  const isFeatured = project.index === 0;
-
+export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div
       className={[
-        // layout
         "flex flex-col relative overflow-hidden",
         "border-2 border-black last:border-r-0",
         "px-9 pt-9 pb-10",
-        // transition
         "transition-colors duration-200",
-        // colours — featured starts inverted, plain starts white
-        isFeatured
-          ? "bg-black hover:bg-[#111]"
-          : "bg-white hover:bg-black group",
+        "bg-white hover:bg-black group",
       ].join(" ")}
     >
       {/* ── Index label ── */}
       <p
         className={[
           "text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5",
-          isFeatured ? "text-[#aaa]" : "text-[#aaa] group-hover:text-[#666]",
+          "text-[#aaa] group-hover:text-[#666]",
         ].join(" ")}
       >
         {String((project.index ?? 0) + 1).padStart(2, "0")}
-        {isFeatured && " — Featured"}
       </p>
 
       {/* ── Image thumbnail ── */}
-      <div
+      <Link
+        href={`/projects/${project.id}`}
         className={[
-          "w-full aspect-video mb-6 overflow-hidden flex items-center justify-center",
-          isFeatured
-            ? "border border-[#2a2a2a] bg-[#1a1a1a]"
-            : "border border-[#e0e0e0] bg-[#f5f5f5] group-hover:border-[#2a2a2a] group-hover:bg-[#1a1a1a]",
+          "w-full aspect-video mb-6 overflow-hidden flex items-center justify-center cursor-pointer",
+          "border border-[#e0e0e0] bg-[#f5f5f5] group-hover:border-[#2a2a2a] group-hover:bg-[#1a1a1a]",
         ].join(" ")}
       >
         <Image
-          src={project.image}
+          src={project.image[0]}
           alt={project.title}
           width={600}
           height={338}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
         />
-      </div>
+      </Link>
 
       {/* ── Title ── */}
       <h3
         className={[
           "text-[1.15rem] font-extrabold tracking-[-0.03em] leading-tight mb-0",
-          isFeatured ? "text-white" : "text-black group-hover:text-white",
+          "text-black group-hover:text-white",
         ].join(" ")}
       >
-        {project.title}
+        <Link href={`/projects/${project.id}`} className="hover:underline">
+          {project.title}
+        </Link>
       </h3>
 
       {/* ── Divider ── */}
       <div
         className={[
           "w-full h-px my-3.5",
-          isFeatured ? "bg-[#333]" : "bg-[#e0e0e0] group-hover:bg-[#444]",
+          "bg-[#e0e0e0] group-hover:bg-[#444]",
         ].join(" ")}
       />
 
@@ -79,7 +68,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <p
         className={[
           "text-[0.825rem] font-normal leading-[1.7] flex-1 mb-5",
-          isFeatured ? "text-[#999]" : "text-[#555] group-hover:text-[#aaa]",
+          "text-[#555] group-hover:text-[#aaa]",
         ].join(" ")}
       >
         {project.description}
@@ -91,10 +80,8 @@ export function ProjectCard({ project }: { project: Project }) {
           <span
             key={i}
             className={[
-              "text-[0.6rem] font-bold tracking-[0.1em] uppercase px-2 py-0.5 border",
-              isFeatured
-                ? "border-[#444] text-[#aaa]"
-                : "border-[#e0e0e0] text-[#777] group-hover:border-[#444] group-hover:text-[#aaa]",
+              "text-[0.6rem] font-bold tracking-widest uppercase px-2 py-0.5 border",
+              "border-[#e0e0e0] text-[#777] group-hover:border-[#444] group-hover:text-[#aaa]",
             ].join(" ")}
           >
             {tag}
@@ -103,7 +90,18 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {/* ── CTA buttons ── */}
-      <div className="flex gap-2 mt-auto">
+      <div className="flex flex-wrap gap-2 mt-auto">
+        <Link
+          href={`/projects/${project.id}`}
+          className={[
+            "inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-[0.08em] uppercase",
+            "border px-4 py-2 transition-colors duration-150 cursor-pointer",
+            "border-black bg-black text-white hover:bg-white hover:text-black",
+          ].join(" ")}
+        >
+          Details
+        </Link>
+
         <a
           href={project.github}
           target="_blank"
@@ -111,9 +109,7 @@ export function ProjectCard({ project }: { project: Project }) {
           className={[
             "inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-[0.08em] uppercase",
             "border px-4 py-2 transition-colors duration-150",
-            isFeatured
-              ? "border-[#555] text-white hover:bg-white hover:text-black hover:border-white"
-              : "border-black text-black group-hover:border-[#555] group-hover:text-white hover:!bg-white hover:!text-black",
+            "border-black text-black group-hover:border-[#555] group-hover:text-white hover:bg-white! hover:text-black!",
           ].join(" ")}
         >
           {/* GitHub icon */}
@@ -132,24 +128,24 @@ export function ProjectCard({ project }: { project: Project }) {
           GitHub
         </a>
 
-        <a
-          href={project.vercel}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={[
-            "inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-[0.08em] uppercase",
-            "border px-4 py-2 transition-colors duration-150",
-            isFeatured
-              ? "border-[#555] text-white hover:bg-white hover:text-black hover:border-white"
-              : "border-black text-black group-hover:border-[#555] group-hover:text-white hover:!bg-white hover:!text-black",
-          ].join(" ")}
-        >
-          {/* Vercel / deploy icon */}
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L2 19.5h20L12 2z" />
-          </svg>
-          Live
-        </a>
+        {project.vercel && project.vercel !== "" && (
+          <a
+            href={project.vercel}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={[
+              "inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-[0.08em] uppercase",
+              "border px-4 py-2 transition-colors duration-150",
+              "border-black text-black group-hover:border-[#555] group-hover:text-white hover:bg-white! hover:text-black!",
+            ].join(" ")}
+          >
+            {/* Vercel / deploy icon */}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 19.5h20L12 2z" />
+            </svg>
+            Live
+          </a>
+        )}
       </div>
     </div>
   );

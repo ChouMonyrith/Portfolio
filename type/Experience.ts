@@ -4,6 +4,9 @@ interface Experience {
   company: string;
   startDate: string;
   endDate: string;
+  status?: string;
+  gpa?: string;
+  tag?: string;
   description: string[];
 }
 

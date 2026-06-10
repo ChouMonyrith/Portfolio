@@ -3,7 +3,7 @@ import Image from "next/image";
 import FadeUp from "./FadeUp";
 import { useState } from "react";
 import type Skill from "@/type/Skill";
-import { SKILLS } from "@/data/skills";
+import { SKILLS } from "@/data/Skills";
 
 export default function SkillBox() {
   return (

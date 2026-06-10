@@ -1,51 +1,90 @@
 "use client";
+
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push(`/?section=${targetId}`);
+    }
+    setIsOpen(false);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 text-black bg-white border-b border-black px-6 py-4 md:px-12 flex justify-between items-center">
-      <a href="#" className="font-extrabold text-md tracking-tight">
+      <Link
+        href="/"
+        onClick={handleLogoClick}
+        className="font-extrabold text-md tracking-tight"
+      >
         CHOUMONYRITH - DEV
-      </a>
+      </Link>
 
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 font-medium">
-        <a
-          href="#about"
+        <Link
+          href="/#about"
+          onClick={(e) => handleNavClick(e, "about")}
           className="text-black hover:underline hover:decoration-2 hover:underline-offset-4 transition-all"
         >
           About Me
-        </a>
-        <a
-          href="#skills"
+        </Link>
+        <Link
+          href="/#skills"
+          onClick={(e) => handleNavClick(e, "skills")}
           className="text-black hover:underline hover:decoration-2 hover:underline-offset-4 transition-all"
         >
           Skills
-        </a>
-        <a
-          href="#experiences"
+        </Link>
+        <Link
+          href="/#experiences"
+          onClick={(e) => handleNavClick(e, "experiences")}
           className="text-black hover:underline hover:decoration-2 hover:underline-offset-4 transition-all"
         >
           Experiences
-        </a>
-        <a
-          href="#projects"
+        </Link>
+        <Link
+          href="/#projects"
+          onClick={(e) => handleNavClick(e, "projects")}
           className="text-black hover:underline hover:decoration-2 hover:underline-offset-4 transition-all"
         >
           Projects
-        </a>
-        <a
-          href="#contact"
+        </Link>
+        <Link
+          href="/#contact"
+          onClick={(e) => handleNavClick(e, "contact")}
           className="text-black hover:underline hover:decoration-2 hover:underline-offset-4 transition-all"
         >
           Contact Me
-        </a>
+        </Link>
       </div>
 
       <a
-        href="#"
+        href="/resume/MONYRITHCHOU-CV.pdf"
+        download="MONYRITHCHOU-CV.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
         className="bg-black text-white px-5 py-2 hover:bg-gray-800 transition-colors duration-200 font-semibold"
       >
         Resume
@@ -71,22 +110,43 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {isOpen && (
         <div className="fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 text-2xl font-bold md:hidden z-40">
-          <a href="#about" onClick={() => setIsOpen(false)}>
+          <Link
+            href="/#about"
+            onClick={(e) => handleNavClick(e, "about")}
+          >
             About Me
-          </a>
-          <a href="#skills" onClick={() => setIsOpen(false)}>
+          </Link>
+          <Link
+            href="/#skills"
+            onClick={(e) => handleNavClick(e, "skills")}
+          >
             Skills
-          </a>
-          <a href="#experiences" onClick={() => setIsOpen(false)}>
+          </Link>
+          <Link
+            href="/#experiences"
+            onClick={(e) => handleNavClick(e, "experiences")}
+          >
             Experiences
-          </a>
-          <a href="#projects" onClick={() => setIsOpen(false)}>
+          </Link>
+          <Link
+            href="/#projects"
+            onClick={(e) => handleNavClick(e, "projects")}
+          >
             Projects
-          </a>
-          <a href="#contact" onClick={() => setIsOpen(false)}>
+          </Link>
+          <Link
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
+          >
             Contact Me
-          </a>
-          <a href="#" className="bg-black text-white px-8 py-3 text-lg mt-4">
+          </Link>
+          <a
+            href="/resume/MONYRITHCHOU-CV.pdf"
+            download="MONYRITHCHOU-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black text-white px-8 py-3 text-lg mt-4"
+          >
             Resume
           </a>
         </div>
