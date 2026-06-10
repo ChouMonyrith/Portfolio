@@ -11,7 +11,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Chou Monyrith | Software Developer Portfolio",
-  description: "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly. Specializing in Next.js, React Native, and Laravel to build clean, responsive user interfaces.",
+  description:
+    "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly. Specializing in Next.js, React Native, and Laravel to build clean, responsive user interfaces.",
   keywords: [
     "Chou Monyrith",
     "Chou Monyrith Portfolio",
@@ -22,12 +23,16 @@ export const metadata: Metadata = {
     "Laravel",
     "SOUND CORE",
     "Borgo App",
-    "Scheduly React Native"
+    "Scheduly React Native",
   ],
+  verification: {
+    google: "4fcoWXtkW7Y8U9bwLg8oXYa9nQxcb68IZwoItpusBjE",
+  },
   authors: [{ name: "Chou Monyrith" }],
   openGraph: {
     title: "Chou Monyrith | Software Developer Portfolio",
-    description: "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly. Specializing in Next.js, React Native, and Laravel.",
+    description:
+      "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly. Specializing in Next.js, React Native, and Laravel.",
     url: "https://github.com/ChouMonyrith",
     siteName: "Chou Monyrith Portfolio",
     images: [
@@ -35,17 +40,18 @@ export const metadata: Metadata = {
         url: "/images/project1.png",
         width: 1200,
         height: 630,
-        alt: "Chou Monyrith Portfolio Preview"
-      }
+        alt: "Chou Monyrith Portfolio Preview",
+      },
     ],
     locale: "en_US",
-    type: "website"
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Chou Monyrith | Software Developer Portfolio",
-    description: "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly.",
-    images: ["/images/project1.png"]
+    description:
+      "Explore Chou Monyrith's software engineering portfolio showcasing SOUND CORE, Borgo, and Scheduly.",
+    images: ["/images/project1.png"],
   },
   robots: {
     index: true,
@@ -55,9 +61,9 @@ export const metadata: Metadata = {
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
-      "max-snippet": -1
-    }
-  }
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
