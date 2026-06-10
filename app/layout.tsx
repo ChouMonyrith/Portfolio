@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Scheduly React Native",
   ],
   verification: {
-    google: "4fcoWXtkW7Y8U9bwLg8oXYa9nQxcb68IZwoItpusBjE",
+    google: "kX3TxsjoNgG34CeYeIqaCScEkNVMBPNzGPFmL1KvcRQ",
   },
   authors: [{ name: "Chou Monyrith" }],
   openGraph: {

@@ -9,7 +9,10 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     if (pathname === "/") {
       const element = document.getElementById(targetId);
@@ -38,7 +41,7 @@ export default function Navbar() {
         onClick={handleLogoClick}
         className="font-extrabold text-md tracking-tight"
       >
-        CHOUMONYRITH - DEV
+        CHOUMONYRITH - OPEN TO WORK
       </Link>
 
       {/* Desktop Menu */}
@@ -110,16 +113,10 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {isOpen && (
         <div className="fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 text-2xl font-bold md:hidden z-40">
-          <Link
-            href="/#about"
-            onClick={(e) => handleNavClick(e, "about")}
-          >
+          <Link href="/#about" onClick={(e) => handleNavClick(e, "about")}>
             About Me
           </Link>
-          <Link
-            href="/#skills"
-            onClick={(e) => handleNavClick(e, "skills")}
-          >
+          <Link href="/#skills" onClick={(e) => handleNavClick(e, "skills")}>
             Skills
           </Link>
           <Link
@@ -134,10 +131,7 @@ export default function Navbar() {
           >
             Projects
           </Link>
-          <Link
-            href="/#contact"
-            onClick={(e) => handleNavClick(e, "contact")}
-          >
+          <Link href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
             Contact Me
           </Link>
           <a
