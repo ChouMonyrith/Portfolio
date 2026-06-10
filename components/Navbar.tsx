@@ -41,7 +41,10 @@ export default function Navbar() {
         onClick={handleLogoClick}
         className="font-extrabold text-md tracking-tight"
       >
-        CHOUMONYRITH - OPEN TO WORK
+        <div className="flex flex-col items-center">
+          <div>CHOU MONYRITH</div>
+          <div className="text-xs">OPEN TO WORK</div>
+        </div>
       </Link>
 
       {/* Desktop Menu */}

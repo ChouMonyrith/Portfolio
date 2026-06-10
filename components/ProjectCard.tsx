@@ -11,7 +11,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <div
       className={[
         "flex flex-col relative overflow-hidden",
-        "border-2 border-black last:border-r-0",
+        "border-2 border-black",
         "px-9 pt-9 pb-10",
         "transition-colors duration-200",
         "bg-white hover:bg-black group",
